@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genel Kültür Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffffff 0%, #ffe5e5 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h1 {
+            color: #e11d48;
+            margin-bottom: 10px;
+        }
+
+        .quiz-header p {
+            color: #718096;
+        }
+
+        .timer {
+            background: #fff1f2;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #be123c;
+            font-weight: bold;
+        }
+
+        .timer.warning {
+            background: #fed7d7;
+            color: #e53e3e;
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .option {
+            background: #fff5f5;
+            border: 2px solid #fecaca;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background: #ffe4e6;
+            border-color: #ef4444;
+        }
+
+        .option.selected {
+            background: #b91c1c;
+            color: white;
+            border-color: #b91c1c;
+        }
+
+        .option.correct {
+            background: #16a34a;
+            color: white;
+            border-color: #16a34a;
+        }
+
+        .option.wrong {
+            background: #dc2626;
+            color: white;
+            border-color: #dc2626;
+        }
+
+        .quiz-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            color: #2d3748;
+        }
+
+        .next-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .next-btn:hover {
+            background: #dc2626;
+        }
+
+        .next-btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+        }
+
+        .result-container {
+            text-align: center;
+            display: none;
+        }
+
+        .result-container h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .restart-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .restart-btn:hover {
+            background: #dc2626;
+        }
+        .start-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        .start-btn:hover { background: #dc2626; }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 8px;
+            color: #2d3748;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-button:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .nav-button.active {
+            background: #667eea;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container quiz-app">
+        <div class="quiz-header">
+            <h1>Genel Kültür Quiz</h1>
+            <p>Kırmızı/beyaz tema • 10 soru • 30 sn</p>
+        </div>
+
+        <div class="start-screen">
+            <p>Hazırsan başla!</p>
+            <button class="start-btn">Oyunu Başlat</button>
+        </div>
+
+        <div class="timer">Kalan Süre: <span id="time">30</span> saniye</div>
+        
+        <div class="quiz-screen">
+        <div class="question-container">
+            <div class="question"></div>
+            <div class="options"></div>
+        </div>
+        <div class="quiz-footer">
+                <div class="score">Soru: <span id="progress">0/10</span></div>
+                <button class="next-btn" disabled>Sonraki</button>
+            </div>
+        </div>
+
+        <div class="result-screen">
+            <h2>Skorun: <span id="final-score">0/10</span></h2>
+            <div style="display:flex; gap:10px; justify-content:center; margin-top:10px;">
+                <a class="restart-btn play-again-btn">Yeniden Oyna</a>
+                <a class="restart-btn" href="score.html">Skorlarım</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initQuiz } from './js/viewModel.js';
+        initQuiz();
+    </script>
+</body>
+</html> 
