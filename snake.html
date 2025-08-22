@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yılan Oyunu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #2c3e50;
+            font-family: Arial, sans-serif;
+        }
+        #gameContainer {
+            text-align: center;
+        }
+        #gameCanvas {
+            border: 3px solid #34495e;
+            background: #ecf0f1;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        #score {
+            font-size: 24px;
+            color: #fff;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        #startScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            z-index: 1000;
+        }
+        #startButton {
+            padding: 15px 40px;
+            font-size: 24px;
+            background: #27ae60;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        #startButton:hover {
+            background: #2ecc71;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
+        }
+        #gameTitle {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #27ae60;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        #gameOver {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+            font-size: 24px;
+            z-index: 1001;
+        }
+        #restartButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #27ae60;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #restartButton:hover {
+            background: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div id="startScreen">
+        <div id="gameTitle">Yılan Oyunu</div>
+        <div style="font-size: 18px; margin-bottom: 20px; color: #bdc3c7;">
+            Ok tuşlarıyla yılanı kontrol edin<br>
+            Sarı yemleri yiyerek büyütün
+        </div>
+        <button id="startButton">Başla</button>
+    </div>
+    <div id="gameContainer">
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div id="score">Skor: 0</div>
+    </div>
+    <div id="gameOver">
+        <div>Oyun Bitti!</div>
+        <div id="finalScore">Skor: 0</div>
+        <button id="restartButton">Tekrar Oyna</button>
+    </div>
+    <script src="snake.js"></script>
+</body>
+</html> 

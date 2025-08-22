@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pist Sürüşü</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #000;
+            font-family: Arial, sans-serif;
+        }
+        #gameCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        #miniMapCanvas {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 200px;
+            height: 150px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        #countdown {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100px;
+            color: #fff;
+            display: none;
+            text-shadow: 0 0 10px #ff0000;
+        }
+        #carSelection {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        #carOptions {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .car-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid #fff;
+            border-radius: 15px;
+            padding: 30px;
+            width: 200px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        .car-option:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #ff0;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.3);
+        }
+        .car-preview {
+            width: 150px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        .car-info {
+            text-align: center;
+        }
+        .car-name {
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 50px;
+            text-shadow: 0 0 20px #ff0;
+            letter-spacing: 2px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <canvas id="miniMapCanvas"></canvas>
+    <div id="countdown">3</div>
+    <div id="carSelection">
+        <h1>Başlamak İçin Tıklayın</h1>
+        <div id="carOptions"></div>
+    </div>
+    <script src="race.js"></script>
+</body>
+</html> 
